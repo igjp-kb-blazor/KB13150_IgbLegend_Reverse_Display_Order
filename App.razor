@@ -1,0 +1,62 @@
+﻿
+<div style="max-width:800px; padding:24px; margin:auto; display:flex; flex-direction:column; gap:12px;">
+    <div>
+        <IgbLegend @ref="_legend"
+                   Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <IgbDataChart Width="100%"
+                  Height="260px"
+                  Legend="_legend">
+
+        <IgbNumericXAxis Name="xAxis"></IgbNumericXAxis>
+
+        <IgbCategoryYAxis Name="yAxis"
+                          DataSource="_sampleData"
+                          Label="@(nameof(SampleDataItem.Category))">
+        </IgbCategoryYAxis>
+
+        <IgbBarSeries Title="Value 1"
+                      DataSource="_sampleData"
+                      XAxisName="xAxis"
+                      YAxisName="yAxis"
+                      ValueMemberPath="@nameof(SampleDataItem.Value1)">
+        </IgbBarSeries>
+
+        <IgbBarSeries Title="Value 2"
+                      DataSource="_sampleData"
+                      XAxisName="xAxis"
+                      YAxisName="yAxis"
+                      ValueMemberPath="@nameof(SampleDataItem.Value2)">
+        </IgbBarSeries>
+
+        <IgbBarSeries Title="Value 3"
+                      DataSource="_sampleData"
+                      XAxisName="xAxis"
+                      YAxisName="yAxis"
+                      ValueMemberPath="@nameof(SampleDataItem.Value3)">
+        </IgbBarSeries>
+    </IgbDataChart>
+</div>
+
+@code
+{
+    private record SampleDataItem(string Category, int Value1, int Value2, int Value3);
+
+    private readonly IEnumerable<SampleDataItem> _sampleData = [
+    new SampleDataItem("A",  9,  8,  7),
+    new SampleDataItem("B",  1,  3,  2),
+    new SampleDataItem("C", 11, 10, 12),
+    ];
+
+    private IgbLegend? _legend;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            StateHasChanged();
+        }
+    }
+}

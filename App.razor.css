@@ -1,0 +1,26 @@
+﻿/* 凡例の表示順を逆順にします */
+::deep igc-legend table {
+    display: flex;
+    flex-direction: row-reverse; /* 縦方向の凡例の場合は column-reverse を指定します */
+    justify-content: flex-end;
+}
+
+/* あるいは、凡例の表示順を、個別に指定するには、以下のように変更します */
+/*
+::deep igc-legend table {
+    display: flex;
+    flex-direction: row;
+}
+
+    ::deep igc-legend table tr:nth-child(1) {
+        order: 2;
+    }
+
+    ::deep igc-legend table tr:nth-child(2) {
+        order: 3;
+    }
+
+    ::deep igc-legend table tr:nth-child(3) {
+        order: 1;
+    }
+*/
